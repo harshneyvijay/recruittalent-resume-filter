@@ -1,0 +1,9 @@
+flask==3.0.3
+pypdf==4.2.0
+scikit-learn==1.4.2
+werkzeug==3.0.3
+python-dotenv==1.0.1
+numpy==1.26.4
+scipy==1.13.0
+gunicorn==21.2.0
+waitress==3.0.0

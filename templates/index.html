@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>RecruitTalent - Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+    <script src="/static/js/script.js" defer></script>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="brand">
+        <span class="brand-icon">H</span>
+        <span class="brand-name">RecruitTalent</span>
+        <span class="brand-tag">AI-powered Resume Analyzer</span>
+    </div>
+    <div class="nav-actions">
+        <button class="nav-btn" onclick="toggleDark()" title="Toggle Dark Mode">
+            <span>Theme Toggle</span>
+        </button>
+        <button class="nav-btn" onclick="downloadPDF()" title="Download PDF Report">
+            <span>Export PDF</span>
+        </button>
+    </div>
+</header>
+
+<div class="container">
+    <div class="layout">
+
+        <aside class="sidebar">
+            <p class="sidebar-label">ANALYSIS SETUP</p>
+
+            <form id="uploadForm">
+                <div class="field">
+                    <label>Job Description</label>
+                    <textarea name="job_description" placeholder="Paste the full job description here…"></textarea>
+                </div>
+
+                <div class="field">
+                    <label>Upload Resumes</label>
+                    <div class="file-drop" id="fileDrop">
+                        <div class="drop-icon">⬆</div>
+                        <div class="drop-text">Drop PDFs or TXTs here</div>
+                        <div class="drop-sub">or click to browse</div>
+                        <input type="file" name="resumes" multiple accept=".pdf,.txt" id="fileInput">
+                    </div>
+                    <div class="file-list" id="fileNames"></div>
+                </div>
+
+                <button type="submit" id="analyzeBtn" class="run-btn">
+                    <span class="btn-shine"></span>
+                    <span>Analyze Resumes</span>
+                </button>
+            </form>
+
+            <div id="loader" class="loader">
+                <div class="loader-track"><div class="loader-fill"></div></div>
+                <p>Running AI Analysis…</p>
+            </div>
+
+            <div class="tips">
+                <p class="tips-heading">Tips</p>
+                <ul>
+                    <li>Include required skills in the Job Description for better matching</li>
+                    <li>Upload multiple resumes at once</li>
+                    <li>Supports PDF and plain text formats</li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="content">
+
+            <div class="empty-state" id="emptyState">
+                <div class="empty-icon"></div>
+                <h2>Ready to Screen and Rank Resumes</h2>
+                <p>Upload resumes and a job description to get AI-powered scores across skills, experience, and education.</p>
+            </div>
+
+            <div id="dashboard" style="display:none">
+                <div id="summary" class="kpi-row"></div>
+
+                <div class="charts-row">
+                    <div class="chart-box wide">
+                        <p class="chart-title">CANDIDATE COMPARISON</p>
+                        <canvas id="barChart"></canvas>
+                    </div>
+                    <div class="chart-box">
+                        <p class="chart-title">TOP CANDIDATE RADAR</p>
+                        <canvas id="radarChart"></canvas>
+                    </div>
+                </div>
+
+                <p class="list-heading">CANDIDATE LEADERBOARD</p>
+                <div id="results"></div>
+            </div>
+
+        </main>
+
+    </div>
+</div>
+
+<footer>
+    <span>Developed by Harshney</span> · <span id="footerYear"> </span> <span>· Powered by AI</span>
+</footer>
+
+<script>
+    document.getElementById("footerYear").textContent = new Date().getFullYear();
+
+    document.getElementById("fileInput").addEventListener("change", function() {
+        const picked = Array.from(this.files);
+        document.getElementById("fileNames").innerHTML = picked.map(f => `<span class="file-tag"> ${f.name}</span>`).join("");
+        document.querySelector(".drop-text").textContent = `${picked.length} file(s) selected`;
+    });
+
+    window.showDashboard = function() {
+        document.getElementById("emptyState").style.display = "none";
+        document.getElementById("dashboard").style.display = "block";
+    };
+</script>
+
+</body>
+</html>
