@@ -105,7 +105,6 @@ Deployed on Render. Auto-deploys on every push to `main`.
 Live: [https://recruittalent-resume-filter.onrender.com]
 
 
+## Notes
 
-## License
-
-MIT
+This is my personal portfolio project; no production deployment or business-impact figures are claimed.
