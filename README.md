@@ -42,8 +42,10 @@ pip install -r requirements.txt
 ```
 
 Create a `.env` file:
+```bash
 SECRET_KEY=your-secret-key-here
 FLASK_DEBUG=true
+```
 
 Generate a secret key:
 ```bash
