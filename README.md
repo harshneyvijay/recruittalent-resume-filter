@@ -60,6 +60,7 @@ Open `http://localhost:8000`
 ---
 
 ## Project structure
+```
 resume-filter/
 ├── api/
 ├── models/
@@ -79,7 +80,7 @@ resume-filter/
 ├── Procfile
 ├── render.yaml
 └── requirements.txt
-
+```
 ---
 
 ## Extending the skill database
